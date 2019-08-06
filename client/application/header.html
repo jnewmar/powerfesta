@@ -1,0 +1,75 @@
+<template name="header">
+   <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo"><img  src="/LogoPowerFesta_gd_azul.png" style="height:100px;margin-top:-20px"></a>
+     
+
+      <!--ul class="right hide-on-med-and-down">
+        <li><a href="/orcamento">Orçamento</a></li>
+        <li><a href="/cad_solic">Solicitar Orçamento</a></li>
+        <li><a href="/lista_solic">Listar Solicitações</a></li>
+
+      </ul-->
+
+      <ul id="nav-mobile" class="side-nav">
+        
+        
+        {{#if currentUser}}
+          {{#if isInRole 'ADMIN'}}      
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/lista_solic">Todas Solicitações</a></li>        
+              <li><a href="/lista_solic_url">Url para orçamento</a></li>        
+          {{/if}}
+          {{#if isInRole 'FORNECEDOR'}}
+              <li><a href="/lista_solic_recebidas">Solicitações Recebidas</a></li>  
+          {{/if}}    
+          {{#if isInRole 'CLIENTE'}}
+              <li><a href="/lista_solic_cliente">Minhas solicitações</a></li>
+              <li><a href="/cad_solic">Solicitar Orçamento</a></li>
+          {{/if}}    
+          <li><a href="#" id="logout">Log Out</a></li>       
+        {{else}}     
+          <li><a href="/cad_fornecedor">Registrar Fornecedor</a></li>          
+          <li><a href="/cad_solic">Solicitar Orçamento</a></li> 
+          <li><a href="/cad_usuario">Registrar</a></li>          
+          <li><a id="abrirModalLogin" class="modal-trigger" href="#modalLogin">Entrar</a></li>
+        {{/if}}
+
+      </ul>
+      <!--a href="/orcamento" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a-->
+    </div>
+  </nav>
+<!-- Modal Structure -->
+  <div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <div class="row  teal white-text">
+          <div class="col s6 left-align"><h5>Login</h5>
+          </div>
+          <div class="col s6 right-align ">
+            <h6 class=" modal-action modal-close" id="fecharModalLogin">x Fechar</h6>
+          </div>
+        </div>
+        <div class="login-form login-password-form">
+            <div id="login-username-label-and-input">
+              <label class="teal-text"  id="login-username-label" for="login-username">
+              Email
+              </label>
+              <input class="teal lighten-5 teal-text" id="login-username" type="text">
+            </div>
+            <div id="login-password-label-and-input">
+              <label class="teal-text"  id="login-password-label" for="login-password">
+                Senha
+              </label>
+              <input class="teal lighten-5 teal-text" id="login-password" type="password">
+            </div>
+
+            <button class="btn waves-effect waves-light" id="login-buttons-password" type="submit" name="action">Logar
+              <i class="mdi-content-send right"></i>
+            </button>
+
+        </div> 
+    </div>    
+  </div>
+      
+          
+</template>
